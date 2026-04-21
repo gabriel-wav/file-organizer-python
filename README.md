@@ -1,111 +1,111 @@
-# 🗄️ Gerenciador de Arquivos em Python
+# 🗄️ Python File Manager
 
 ![Python Version](https://img.shields.io/badge/python-3.x-blue.svg)
 
-Um utilitário de linha de comando e interface gráfica para organizar arquivos por extensão, criar backups compactados e gerar relatórios de diretórios.
+A command-line and graphical interface utility to organize files by extension, create compressed backups, and generate directory reports.
 
 ---
 
-## 📖 Cenário
+## 📖 Scenario
 
-> Uma empresa de banco de dados chamada DWC sofreu um ataque de hackers que invadiram seus sistemas, bagunçando todo o conteúdo armazenado. Após buscar uma solução, a DWC encontrou nossa equipe e solicitou ajuda para resolver o problema. Aceitamos o desafio e criamos esta ferramenta para restaurar a ordem.
-
----
-
-## ✨ Funcionalidades Principais
-
-* **Organização Automática**: Move arquivos para pastas nomeadas de acordo com suas extensões (ex: `documentos`, `imagens`, `videos`).
-* **Criação de Backups**: Gera um arquivo `.zip` contendo todos os arquivos do diretório especificado, com um timestamp para controle de versão.
-* **Geração de Relatórios**: Cria um arquivo de texto (`.txt`) com um resumo do conteúdo do diretório, incluindo a contagem de arquivos por extensão.
-* **Interface Dupla**: Pode ser utilizado tanto através de uma interface gráfica simples (GUI) com Tkinter quanto via linha de comando (CLI) para automação e scripting.
+> A database company called DWC suffered a hacker attack that breached their systems, scrambling all stored content. After searching for a solution, DWC found our team and requested help to fix the problem. We accepted the challenge and built this tool to restore order.
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## ✨ Key Features
+
+* **Automatic Organization**: Moves files into folders named according to their extensions (e.g.: `documents`, `images`, `videos`).
+* **Backup Creation**: Generates a `.zip` file containing all files from the specified directory, with a timestamp for version control.
+* **Report Generation**: Creates a text file (`.txt`) with a summary of the directory contents, including a file count per extension.
+* **Dual Interface**: Can be used either through a simple graphical user interface (GUI) built with Tkinter, or via the command line (CLI) for automation and scripting.
+
+---
+
+## 🛠️ Technologies Used
 
 * **Python 3**
-* **Tkinter** para a interface gráfica (biblioteca padrão do Python)
-* **Bibliotecas Nativas:** `os`, `shutil`, `datetime`, `zipfile`, `logging`, `argparse`.
+* **Tkinter** for the graphical interface (Python standard library)
+* **Native Libraries:** `os`, `shutil`, `datetime`, `zipfile`, `logging`, `argparse`.
 
 ---
 
-## 🚀 Como Utilizar
+## 🚀 How to Use
 
-Não é necessária nenhuma instalação de pacotes externos. Apenas clone este repositório:
+No external packages need to be installed. Just clone this repository:
 
 ```bash
 git clone https://github.com/gabriel-wav/separador-de-arquivos.git
 cd separador-de-arquivos
 ```
 
-Você pode usar a ferramenta de duas maneiras:
+You can use the tool in two ways:
 
-### 1. Utilizando a Interface Gráfica (GUI)
+### 1. Using the Graphical Interface (GUI)
 
-Esta é a maneira mais fácil e visual de usar o programa.
+This is the easiest and most visual way to use the program.
 
-Execute o seguinte comando no seu terminal:
+Run the following command in your terminal:
 
 ```bash
 python interface.py
 ```
 
-Uma janela se abrirá com as seguintes opções:
+A window will open with the following options:
 
-- **Selecionar Pasta**: Clique para escolher o diretório que você deseja gerenciar.
-- **Organizar Arquivos**: Após selecionar uma pasta, clique para mover os arquivos para subpastas por tipo.
-- **Criar Backup**: Cria um backup `.zip` da pasta selecionada.
-- **Gerar Relatório**: Cria um arquivo `.txt` com as estatísticas da pasta.
+- **Select Folder**: Click to choose the directory you want to manage.
+- **Organize Files**: After selecting a folder, click to move files into subfolders by type.
+- **Create Backup**: Creates a `.zip` backup of the selected folder.
+- **Generate Report**: Creates a `.txt` file with the folder's statistics.
 
-### 2. Utilizando a Linha de Comando (CLI)
+### 2. Using the Command Line (CLI)
 
-Para usuários avançados ou para uso em scripts, você pode usar `separadorDeArquivos.py` diretamente do terminal.
+For advanced users or scripting purposes, you can use `separadorDeArquivos.py` directly from the terminal.
 
-**Estrutura do comando:**
+**Command structure:**
 ```bash
-python separadorDeArquivos.py [comando] --diretorio "/caminho/para/sua/pasta"
+python separadorDeArquivos.py [command] --diretorio "/path/to/your/folder"
 ```
 
-**Comandos disponíveis:**
+**Available commands:**
 
-#### `organizar`: Organiza os arquivos no diretório especificado.
+#### `organizar`: Organizes the files in the specified directory.
 
 ```bash
-python separadorDeArquivos.py organizar --diretorio "C:\Users\SeuUsuario\Downloads"
+python separadorDeArquivos.py organizar --diretorio "C:\Users\YourUser\Downloads"
 ```
 
-#### `backup`: Cria um backup do diretório. Você pode especificar um nome para o arquivo de backup.
+#### `backup`: Creates a backup of the directory. You can specify a name for the backup file.
 
 ```bash
-# Backup com nome padrão (ex: backup_2025-06-08_093000.zip)
-python separadorDeArquivos.py backup --diretorio "C:\Users\SeuUsuario\Documentos"
+# Backup with default name (e.g.: backup_2025-06-08_093000.zip)
+python separadorDeArquivos.py backup --diretorio "C:\Users\YourUser\Documents"
 
-# Backup com nome personalizado
-python separadorDeArquivos.py backup --diretorio "C:\Users\SeuUsuario\Documentos" --nome "Backup_Projeto_Final"
+# Backup with custom name
+python separadorDeArquivos.py backup --diretorio "C:\Users\YourUser\Documents" --nome "Final_Project_Backup"
 ```
 
-#### `relatorio`: Gera um relatório de conteúdo do diretório.
+#### `relatorio`: Generates a content report for the directory.
 
 ```bash
-python separadorDeArquivos.py relatorio --diretorio "C:\Users\SeuUsuario\Imagens"
+python separadorDeArquivos.py relatorio --diretorio "C:\Users\YourUser\Images"
 ```
 
 ---
 
-## 👨‍💻 Autores e Contribuições
+## 👨‍💻 Authors & Contributions
 
-Este projeto foi desenvolvido em equipe, com as seguintes contribuições:
+This project was developed as a team, with the following contributions:
 
 **Antonio Ferreira** ([@Antoniojferreira3](https://github.com/Antoniojferreira3)):
-- Desenvolvimento da classe principal (`__init__`).
-- Criação da interface gráfica com Tkinter (`interface.py`).
+- Development of the main class (`__init__`).
+- Creation of the graphical interface with Tkinter (`interface.py`).
 
 **Danilo Gutierre** ([@danilinhotj187](https://github.com/danilinhotj187)):
-- Implementação da função de organização de arquivos por extensão (`organizar_por_extensao`).
+- Implementation of the file organization function by extension (`organizar_por_extensao`).
 
 **Gabriel Fernandes** ([@gabriel-wav](https://github.com/gabriel-wav)):
-- Implementação da função de criação de backups em formato `.zip` (`criar_backup`).
+- Implementation of the backup creation function in `.zip` format (`criar_backup`).
 
 **Pedro Henrique** ([@pedroH901](https://github.com/pedroH901)):
-- Implementação da função de geração de relatórios (`gerar_relatorio`).
-- Configuração da interface de linha de comando com `argparse`.
+- Implementation of the report generation function (`gerar_relatorio`).
+- Configuration of the command-line interface with `argparse`.
