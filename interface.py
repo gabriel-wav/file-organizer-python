@@ -1,49 +1,66 @@
 import tkinter as tk
 from tkinter import filedialog, messagebox
-from separadorDeArquivos import GerenciadorArquivos  # Importa sua classe original
+from file_manager import FileManager  # Imports your translated class from the previous file
 
 class App:
     def __init__(self, root):
         self.root = root
-        self.root.title("Organizador de Arquivos")
-        self.diretorio = ""
+        self.root.title("File Organizer")
+        
+        # IMPROVEMENT: Set a default window size so it isn't cramped
+        self.root.geometry("350x220")
+        
+        self.directory = ""
 
-        # Botão para escolher a pasta
-        tk.Button(root, text="Selecionar Pasta", command=self.selecionar_pasta).pack(pady=10)
+        # Button to choose folder
+        tk.Button(root, text="Select Folder", command=self.select_folder).pack(pady=15)
 
-        # Botões de ação
-        tk.Button(root, text="Organizar Arquivos", command=self.organizar).pack(fill='x', padx=20, pady=5)
-        tk.Button(root, text="Criar Backup", command=self.backup).pack(fill='x', padx=20, pady=5)
-        tk.Button(root, text="Gerar Relatório", command=self.relatorio).pack(fill='x', padx=20, pady=5)
+        # Action buttons
+        tk.Button(root, text="Organize Files", command=self.organize).pack(fill='x', padx=30, pady=5)
+        tk.Button(root, text="Create Backup", command=self.backup).pack(fill='x', padx=30, pady=5)
+        tk.Button(root, text="Generate Report", command=self.report).pack(fill='x', padx=30, pady=5)
 
-    def selecionar_pasta(self):
-        self.diretorio = filedialog.askdirectory()
-        if self.diretorio:
-            messagebox.showinfo("Pasta Selecionada", f"Diretório selecionado:\n{self.diretorio}")
+    def select_folder(self):
+        # IMPROVEMENT: Added a title to the selection window to improve UX
+        self.directory = filedialog.askdirectory(title="Select a directory to manage")
+        if self.directory:
+            messagebox.showinfo("Folder Selected", f"Selected directory:\n{self.directory}")
 
-    def organizar(self):
-        if not self.diretorio:
-            return messagebox.showerror("Erro", "Nenhum diretório selecionado")
-        g = GerenciadorArquivos(self.diretorio)
-        g.organizar_por_extensao()
-        messagebox.showinfo("Concluído", "Arquivos organizados com sucesso!")
+    def check_directory(self):
+        """Helper method to verify whether a directory was selected."""
+        if not self.directory:
+            messagebox.showerror("Error", "No directory selected.")
+            return False
+        return True
+
+    def organize(self):
+        # Use the helper method to avoid repeating code
+        if not self.check_directory():
+            return
+        
+        manager = FileManager(self.directory)
+        manager.organize_by_extension()
+        messagebox.showinfo("Done", "Files organized successfully!")
 
     def backup(self):
-        if not self.diretorio:
-            return messagebox.showerror("Erro", "Nenhum diretório selecionado")
-        g = GerenciadorArquivos(self.diretorio)
-        caminho = g.criar_backup()
-        if caminho:
-            messagebox.showinfo("Backup criado", f"Arquivo salvo em:\n{caminho}")
+        if not self.check_directory():
+            return
+            
+        manager = FileManager(self.directory)
+        path = manager.create_backup()
+        
+        if path:
+            messagebox.showinfo("Backup Created", f"File saved at:\n{path}")
         else:
-            messagebox.showerror("Erro", "Falha ao criar backup")
+            messagebox.showerror("Error", "Failed to create backup. Check logs for details.")
 
-    def relatorio(self):
-        if not self.diretorio:
-            return messagebox.showerror("Erro", "Nenhum diretório selecionado")
-        g = GerenciadorArquivos(self.diretorio)
-        caminho = g.gerar_relatorio()
-        messagebox.showinfo("Relatório gerado", f"Arquivo salvo em:\n{caminho}")
+    def report(self):
+        if not self.check_directory():
+            return
+            
+        manager = FileManager(self.directory)
+        path = manager.generate_report()
+        messagebox.showinfo("Report Generated", f"File saved at:\n{path}")
 
 if __name__ == "__main__":
     root = tk.Tk()
