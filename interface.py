@@ -1,6 +1,16 @@
 import tkinter as tk
+import ctypes
+import sys
 from tkinter import filedialog, messagebox
 from file_manager import FileManager  # Imports your translated class from the previous file
+
+
+# Tell it to use native resolution (High DPI awareness)
+try:
+    if sys.platform.startswith('win'):
+        ctypes.windll.shcore.SetProcessDpiAwareness(1)
+except Exception:
+    pass
 
 class App:
     def __init__(self, root):
