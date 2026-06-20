@@ -34,13 +34,41 @@ A command-line and graphical interface utility to organize files by extension, c
 No external packages need to be installed. Just clone this repository:
 
 ```bash
-git clone [https://github.com/gabriel-wav/separador-de-arquivos.git](https://github.com/gabriel-wav/separador-de-arquivos.git)
+git clone https://github.com/gabriel-wav/separador-de-arquivos.git
 cd separador-de-arquivos
 ```
 
-You can use the tool in two ways:
+You can use the tool in three ways:
 
-### 1. Using the Graphical Interface (GUI)
+### Method 1: Build an Executable with PyInstaller (Recommended)
+
+Open a terminal (Command Prompt/CMD on Windows, or the terminal in VS Code).
+
+Install PyInstaller:
+
+```bash
+pip install pyinstaller
+```
+
+Navigate to the folder where `interface.py` is located (the root directory of the project).
+
+Run the build command:
+
+```bash
+pyinstaller --noconsole --onefile interface.py
+```
+
+**Parameter explanation:**
+
+- `--onefile`: Bundles everything into a single executable file instead of creating a folder with dependencies.
+- `--noconsole` (or `--windowed`): Prevents the terminal window from opening in the background, displaying only the Tkinter GUI.
+- `interface.py`: The main file that launches the application. PyInstaller automatically detects and includes dependencies such as `file_manager.py`.
+
+Wait for the process to finish. PyInstaller will create new folders (`build` and `dist`) in the project directory.
+
+**Find your executable:** Open the `dist` folder. Inside, you will find `interface.exe` (you may rename it to something like `FileOrganizer.exe`). This is your ready-to-use application.
+
+### Method 2: Using the Graphical Interface (GUI)
 
 This is the easiest and most visual way to use the program. Run the following command in your terminal:
 
@@ -55,11 +83,12 @@ A window will open with the following options:
 - **Create Backup**: Creates a `.zip` backup of the selected folder.
 - **Generate Report**: Creates a `.txt` file with the folder's statistics.
 
-### 2. Using the Command Line (CLI)
+### Method 3: Using the Command Line (CLI)
 
 For advanced users or scripting purposes, you can use `file_manager.py` directly from the terminal.
 
 **Command structure:**
+
 ```bash
 python file_manager.py [command] --directory "/path/to/your/folder"
 ```
@@ -103,7 +132,7 @@ This project was developed as a team, with the following contributions:
 
 **Gabriel Fernandes** ([@gabriel-wav](https://github.com/gabriel-wav)):
 - Implementation of the backup creation function in `.zip` format (`create_backup`).
-- **Recent Updates:** Independently refactored the entire codebase to use modern libraries (`pathlib`), fixed critical counter bugs, improved folder exclusion logic, and translated the project to English.
+- **Recent Updates:** Independently refactored the entire codebase to use modern libraries (`pathlib`), fixed critical counter bugs, improved folder exclusion logic, fixed the blur of tkinter and translated the project to English.
 
 **Pedro Henrique** ([@pedroH901](https://github.com/pedroH901)):
 - Implementation of the report generation function (`generate_report`).
